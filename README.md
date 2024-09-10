@@ -30,5 +30,4 @@ npm run dev
 ```
 
 ## Result
-Check out the results right here! 
-https://weather-forecast-gules-eight.vercel.app/
+[Check out the results right here!](https://weather-forecast-gules-eight.vercel.app/)
