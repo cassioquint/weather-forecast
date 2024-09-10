@@ -27,3 +27,8 @@ This is an React project for checking the weather forecast
 After installation, you can start the local server with:
 ```bash
 npm run dev
+```
+
+## Result
+Check out the results right here! 
+https://weather-forecast-gules-eight.vercel.app/
