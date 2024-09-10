@@ -10,15 +10,18 @@ function App() {
   const [info, setInfo] = useState()
   const [infoForecast, setInfoForecast] = useState()
   const [isButtonClicked, setIsButtonClicked] = useState(false)
-
+  const [hasError, setHasError] = useState(false)
   const inputRef = useRef()
 
   async function searchCity(cityName) {
+
     const city = cityName || inputRef.current.value.trim();
+
     if (!city) {
-      alert('Please enter a city name');
+      setHasError(true)
       return;
     }
+    setHasError(false)
     const key = import.meta.env.VITE_API_KEY
     const urlWeather = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${key}&lang=en&units=metric`
     const urlForecast = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${key}&lang=en&units=metric`
@@ -33,6 +36,7 @@ function App() {
     } catch (error) {
       console.error("Error fetching weather data:", error);
       alert("Unable to fetch data. Please check the city name or try again later.");
+      inputRef.current.value = ''
     }
   }
 
@@ -47,7 +51,7 @@ function App() {
 
   function handleKeyDown(event) {
     if (event.key === 'Enter') {
-      handleButtonClick(); // Executa a busca ao pressionar Enter
+      handleButtonClick();
     }
   }
 
@@ -60,16 +64,17 @@ function App() {
       <div className='container'>
         <h1>Cloudy with a Chance</h1>
         <div className='form-wrapper'>
-          <div className='input-wrapper'>
+          <div className={`input-wrapper ${hasError ? 'wrapper-error' : ''}`}>
             <FontAwesomeIcon icon={faLocationDot} />
             <input
+              className={hasError ? 'input-error' : ''}
               ref={inputRef}
               onKeyDown={handleKeyDown}
               type="text"
               placeholder="Ex.: São Paulo"
             />
           </div>
-          <button className={isButtonClicked ? 'button-clicked' : ''} onClick={searchCity}>
+          <button className={isButtonClicked ? 'button-clicked' : ''} onClick={handleButtonClick}>
             <FontAwesomeIcon icon={faMagnifyingGlass} />
             &nbsp;Search
           </button>

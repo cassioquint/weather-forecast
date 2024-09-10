@@ -34,6 +34,15 @@ input {
     outline: none;
 }
 
+.wrapper-error {
+    border: 2px solid red;
+    background-color: #ffe6e6;
+  }
+
+  .input-error {
+    background-color: #ffe6e6;
+  }
+
 button {
     background-color: #ff9800;
     border: 0;
@@ -47,3 +56,9 @@ button {
 button.button-clicked, button:hover {
     background-color: #f57c00;
 }
+
+.error-message {
+    color: red;
+    font-size: 0.9rem;
+    margin-top: 5px;
+  }

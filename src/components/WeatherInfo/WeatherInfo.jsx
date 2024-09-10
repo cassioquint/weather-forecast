@@ -2,13 +2,11 @@ import './WeatherInfo.css'
 
 function WeatherInfo({ info }) {
 
-    const src = `http://openweathermap.org/img/wn/${info.weather[0].icon}.png`
-
     return (
         <div className='weather-container'>
             <h2>{info.name}</h2>
             <div className='weather-info'>
-                <img src={src} alt="" />
+                <img src={`/weather/${info.weather[0].id}.png`} alt={info.weather[0].descrition} />
                 <p className='temperature'>{Math.round(info.main.temp)}°C</p>
             </div>
 
